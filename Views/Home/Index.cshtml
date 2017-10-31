@@ -1,0 +1,44 @@
+﻿<main>
+    <h1>
+        Hi! :)
+    </h1>
+    
+    <h4>Authors</h4>
+    <form action="author/create" method="post">
+        <input type="text" name="name" placeholder="Add an author">
+        <input type="submit" value="Authorify!">
+    </form>
+    <ul>
+        @foreach(var author in ViewBag.authors)
+        {
+            <li>@author.name</li>
+        }
+    </ul>
+
+    <h4>Quotes</h4>
+    <form action="quote/create" method="post">
+        <input type="text" name="quote" placeholder="Quote here">
+        <input type="text" name="meta" placeholder="Meta text here">
+        <select name="authorId">
+            @foreach(var author in ViewBag.authors)
+            {
+                <option value="@author.authorId">@author.name</option>
+            }
+        </select>
+        <select name="categoryId">
+            @foreach(var cat in ViewBag.cats)
+            {
+                <option value="@cat.id">@cat.category</option>
+            }
+        </select>
+        <input type="submit" value="Be Quoted!">
+    </form>
+    <ul>
+        @foreach(var quote in ViewBag.quotes)
+        {
+            <li>@quote.quote -- @quote.author.name (@quote.meta.meta)</li>
+        }
+    </ul>
+    
+
+</main>
